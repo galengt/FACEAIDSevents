@@ -36,3 +36,5 @@ create table if not exists faceaids.chapter_member (
 );
 
 alter table faceaids.user modify column chapter_id integer unsigned default null;
+alter table faceaids.chapter add column city varchar(255) not null;
+alter table faceaids.chapter add column state varchar(255) not null;

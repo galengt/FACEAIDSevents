@@ -35,5 +35,46 @@ client.query(
   }
 );
 
+var Chapter = db.define("faceaids.chapter", {
+    "id"   : { "type": "int" },
+	"name"   : { "type": "string" },
+	"leader_id"   : { "type": "int" },
+    "school": { "type": "string"},
+    "city"    : { "type": "string" },
+	"state"    : { "type": "string" },
+	"description"    : { "type": "string" },
+	"additional_info"    : { "type": "string" },
+	"active"    : { "type": "boolean" }
+
+}, {
+    "methods" : {
+        "getChapterName" :function () {
+            return this.name
+        },
+
+		"getChapterLocation" :function () {
+            return this.city + ", " + this.that;
+        },
+
+		"getChapterLocation" :function () {
+            return this.city + ", " + this.that;
+        },
+		
+		"getLeader" :function () {
+            return this.leader_id;
+        }, 
+		
+		"getChapterDescription" :function () {
+            return this.description;
+        }
+    }
+});
+
+//is this right??
+Chapter.hasMany("members", Chapter, "user");
+Chapter.hasMany("leader", Chapter, "user");
+
+//TODO define a model for User
+
 
 
