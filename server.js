@@ -1,5 +1,6 @@
 var http = require('http');
 var foo = require('./event')
+var bar = require('node.mysql')
 
 var eventOne = foo.makeEvent('foo', 'bar', 'cat', 'dog');
 

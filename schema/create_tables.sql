@@ -1,4 +1,4 @@
-create if not exists database face_aids;
+create database if not exists faceaids;
 
 create table if not exists faceaids.user  (
 	id integer unsigned AUTO_INCREMENT PRIMARY KEY,
