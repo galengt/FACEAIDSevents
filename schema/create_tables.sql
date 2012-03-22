@@ -34,3 +34,5 @@ create table if not exists faceaids.chapter_member (
 	foreign key (chapter_id) references faceaids.chapter(id),
 	UNIQUE (user_id, chapter_id)
 );
+
+alter table faceaids.user modify column chapter_id integer unsigned default null;

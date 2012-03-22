@@ -101,6 +101,15 @@ create table chapter_member {
 	PRIMARY(user_id, chapter_id);
 }
 
+create table event_template {
+	id 
+	name
+	required number of planners
+	difficulty
+	budget
+	description
+}
+
 
 
 
