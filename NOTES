@@ -1,0 +1,113 @@
+[domain]
+chapters
+	size of people
+	leader
+	location
+	name
+	school association
+	education level
+	
+	
+[actions]
+	new or existing chapter to create an event
+	audit trail for events and suggestions
+
+[template] - each action has a template
+	metadata
+	associated resources
+	
+interface: (instances)
+	chapter, time <- template
+
+
+[filter]
+	#number of planners
+	#difficulty
+
+
+
+
+-----------------------------
+
+Event - interface
+Walkathon - implementation
+Bike Ride - implementation
+
+
+Lucene
+------------------------------------------------------------------------------------
+[Event]
+getEventType() - [Walkathon, BikeRide, Picnic......]
+getNumberOfPlanners()
+getDateOfEvent()
+getNotes()
+getDifficultly()
+getChapter()
+getOrganizer()
+
+
+Database
+------------------------------------------------------------------------------------
+[User]
+FirstName
+LastName
+Chapter
+lostLogin
+Password
+school
+year
+Active (bit)
+
+
+[Chapter]
+leader(s)
+member(s)
+name 
+school
+description
+additional info
+Active (bit)
+
+
+create table user {
+	id integer unsigned auto increment,
+	username varchar(255)  not null,
+	firstname varchar(255)  not null,
+	lastname varchar(255)  not null,
+	chapter_id integer unsigned  not null,
+	last_login timestamp default CURRENT_TIMESTAMP,
+	password varchar(255) not null,
+	school varchar(255) not null,
+	year int(4) not null,
+	active tinyint(1) default 0,
+	PRIMARY(id),
+	foreign key (chapter_id) references chapter(id)
+}
+
+create table chapter {
+	id integer unsigned auto increment,
+	leader_id integer unsigned default not null,
+	name varchar(255) not null,
+	school varchar(255)  not null,
+ 	description varchar(255)  not null,
+	additional_info varchar(255) not null
+	active tinyint(1) default 0
+}
+
+create table chapter_member {
+	id integer unsigned auto increment,
+	user_id,
+	chapter_id
+	PRIMARY(user_id, chapter_id);
+}
+
+
+
+
+
+
+	
+	
+
+	
+	
