@@ -5,7 +5,7 @@ create table if not exists faceaids.user  (
 	username varchar(255)  not null,
 	firstname varchar(255)  not null,
 	lastname varchar(255)  not null,
-	chapter_id integer unsigned  not null,
+	chapter_id integer unsigned,
 	last_login timestamp default CURRENT_TIMESTAMP,
 	password varchar(255) not null,
 	school varchar(255) not null,
@@ -15,11 +15,13 @@ create table if not exists faceaids.user  (
 
 create table if not exists faceaids.chapter (
 	id integer unsigned AUTO_INCREMENT PRIMARY KEY,
-	leader_id integer unsigned  not null,
+	leader_id integer unsigned,
 	chapter_name varchar(255) not null,
 	school varchar(255)  not null,
  	description varchar(255)  not null,
 	additional_info varchar(255) not null,
+	city varchar(255) not null,
+	state varchar(255) not null,
 	active tinyint(1) default 0
 );
 
@@ -34,7 +36,3 @@ create table if not exists faceaids.chapter_member (
 	foreign key (chapter_id) references faceaids.chapter(id),
 	UNIQUE (user_id, chapter_id)
 );
-
-alter table faceaids.user modify column chapter_id integer unsigned default null;
-alter table faceaids.chapter add column city varchar(255) not null;
-alter table faceaids.chapter add column state varchar(255) not null;
