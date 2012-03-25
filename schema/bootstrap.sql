@@ -22,4 +22,4 @@ VALUES('jveroff', 'julie', 'veroff', (SELECT id from chapter where chapter_name 
 UPDATE chapter SET leader_id = (select id from user where firstname = 'julie' and lastname = 'veroff') where chapter_name like '%leadership%';
 
 -- write rows to chapter_member
-INSERT IGNORE INTO chapter_member (user_id, chapter_id) VALUES ((SELECT id FROM user), );
+-- INSERT IGNORE INTO chapter_member (user_id, chapter_id) VALUES ((SELECT id FROM user), );
