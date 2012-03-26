@@ -4,7 +4,7 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Face Aids - Please Login' })
+	res.render('index', { title: 'Face Aids - Please Login' })
 };
 
 exports.login = function(req, res) {
@@ -19,7 +19,8 @@ exports.login = function(req, res) {
                 exports.chapters(req, res);
             }
         } else {
-			  res.render('index', { title: 'Face Aids - Please Login' })
+			  var errorMessage = 'Invalid username / password combination for: ' + req.param('user');
+			  res.render('error', { title: 'Face Aids - Error Logging In', errorMessage:  errorMessage})
 		}
 		
 	 });

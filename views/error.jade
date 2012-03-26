@@ -1,0 +1,12 @@
+h1= title
+
+h1=errorMessage
+
+form(name="input", action="/", method="post")
+  | Username:
+  input(type="text", name="user")
+  br
+  | Password:
+  input(type="password", name="pswd")
+  br
+  input(type="submit", value="Sign in")
