@@ -18,8 +18,12 @@ exports.login = function(req, res) {
             if (firstResult['password'] == req.param('pswd')) {
                 exports.chapters(req, res);
             }
+			else {
+				  var errorMessage = 'Invalid username / password combination for: ' + req.param('user');
+				  res.render('error', { title: 'Face Aids - Error Logging In', errorMessage:  errorMessage})
+			}
         } else {
-			  var errorMessage = 'Invalid username / password combination for: ' + req.param('user');
+			  var errorMessage = 'That username doesn\'t exist';
 			  res.render('error', { title: 'Face Aids - Error Logging In', errorMessage:  errorMessage})
 		}
 		
