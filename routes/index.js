@@ -9,17 +9,19 @@ exports.index = function(req, res){
 
 exports.login = function(req, res) {
     var foo = '';
-    require('./query.js').makeQuery("Select password from faceaids.user where username=" + req.param('user'),  function selectCb(err, results, fields) {
+    require('./query.js').makeQuery("Select password from faceaids.user where username='" + req.param('user') + "'",  function selectCb(err, results, fields) {
     	if (err) {
 		      throw err;
 		}
         if (results.length > 0) {
             var firstResult = results[0];
-            if (firstResult['password'] == req.param('password')) {
-                res.render('chapters', { title: 'Chapters', chapters: results});        
+            if (firstResult['password'] == req.param('pswd')) {
+                exports.chapters(req, res);
             }
-        }
-        res.render('index', { title: 'Face Aids - Please Login' })
+        } else {
+			  res.render('index', { title: 'Face Aids - Please Login' })
+		}
+		
 	 });
 };
 
