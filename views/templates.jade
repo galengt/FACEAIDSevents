@@ -1,0 +1,23 @@
+div(align="center")
+	img(src = "images/faceaids_logo.gif")
+
+
+div(align="center")
+	table(class="templates")
+		thead
+			tr
+				th Type
+				th Number of Planners
+				th Days to Plan
+				th Budget
+				th Difficulty
+			
+		tbody
+			each items in templates
+				each item in items
+					tr
+						td=item._source.type
+						td=item._source.number_of_planners
+						td=item._source.days_to_plan
+						td=item._source.budget
+						td=item._source.difficulty

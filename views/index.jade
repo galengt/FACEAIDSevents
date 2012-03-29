@@ -1,10 +1,18 @@
-h1= title
+div(align="center")
+	img(src = "images/faceaids_logo.gif")
 
-form(name="input", action="/", method="post")
-  | Username:
-  input(type="text", name="user")
-  br
-  | Password:
-  input(type="password", name="pswd")
-  br
-  input(type="submit", value="Sign in")
+
+div(class="container")
+	section(id="content")
+		form(name="input", action="/", method="post")
+			div
+				label
+					| Username:
+					input(type="text", name="user", placeholder="Username", required="", id="username")
+			div
+				label
+					| Password:
+					input(type="password", name="pswd", placeholder="Password", required="", id="password")
+			div
+				input(type="submit", value="Sign in")
+		
