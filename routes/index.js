@@ -57,3 +57,12 @@ exports.templates = function(req, res) {
 	});		
 };
 
+exports.users = function(req, res){
+	require('./query.js').makeQuery("Select username, firstname, lastname, school from faceaids.user",  function selectCb(err, results, fields) {
+		if (err) {
+		      throw err;
+		}
+		res.render('users', { users : results, title : 'All Current Users' } );
+	});
+};
+
