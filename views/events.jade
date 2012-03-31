@@ -1,0 +1,41 @@
+div(align="center")
+	img(src = "images/faceaids_logo.gif")
+
+
+form.form-wrapper.cf(action='/events', method="GET")
+	input(type='text', placeholder='Search here...', required='required', name='q')
+	button(type='submit') Search
+
+div(align="center")
+	if (events.total == '0')
+		span No Results Found
+	else
+		table(class="templates")
+			thead
+				tr
+					th Type
+					th Chapter
+					th Date
+					th Planners
+					th Days 
+					th Raised
+					th Cost
+					th Difficulty
+					th Pluses
+					th Deltas
+					th Notes
+			tbody
+				each items in events
+					each item in items
+						tr
+							td=item._source.type
+							td=item._source.chapter
+							td=item._source.date
+							td=item._source.number_of_planners
+							td=item._source.days_to_plan
+							td=item._source.amount_raised
+							td=item._source.cost
+							td=item._source.difficulty													
+							td=item._source.pluses
+							td=item._source.deltas
+							td=item._source.notes																					

@@ -19,7 +19,7 @@ div.logo {
 /* table */
 
 .templates thead th{
-    padding:15px;
+    padding:10px;
     color:#fff;
     text-shadow:1px 1px 1px #568F23;
     border:1px solid #93CE37;
@@ -349,7 +349,7 @@ form:after {
     margin: 20px auto 20px auto;
     background: #444;
     background: rgba(0,0,0,.2);
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
 }
  

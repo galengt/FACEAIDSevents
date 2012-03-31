@@ -57,8 +57,23 @@ exports.templates = function(req, res) {
 	var elastic = new Elastic('localhost', 9200);
 	var searchResults = elastic.search('templates', 'event', query, function(err, response, body){
 			var eventTemplates = JSON.parse(body);
-			console.log(JSON.stringify(eventTemplates));
 			res.render('templates', { title: 'Template Events', templates: eventTemplates.hits}); 
 	});
 };
 
+exports.events = function(req, res) {
+	loggedIn = require('./loggedin')
+	if (!loggedIn(req)) {
+		res.redirect('/');
+	}
+	var query = '*';
+	if (req.param('q') != undefined) {
+		query = req.param('q');
+	}
+	var Elastic = require('./elastic');
+	var elastic = new Elastic('localhost', 9200);
+	var searchResults = elastic.search('instance', 'event', query, function(err, response, body){
+			var eventInstances = JSON.parse(body);
+			res.render('events', { title: 'Template Events', events: eventInstances.hits}); 
+	});
+}

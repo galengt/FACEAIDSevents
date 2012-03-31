@@ -23,7 +23,8 @@ div(align="center")
 				each items in templates
 					each item in items
 						tr
-							td=item._source.type
+							td
+								a(href='/events?q=type:' + item._source.type) #{item._source.type}
 							td=item._source.number_of_planners
 							td=item._source.days_to_plan
 							td=item._source.budget
