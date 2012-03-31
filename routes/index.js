@@ -49,14 +49,15 @@ exports.templates = function(req, res) {
 	if (!loggedIn(req)) {
 		res.redirect('/');
 	}
-	var query = 'type:*';
+	var query = '*';
 	if (req.param('q') != undefined) {
-		query = 'type:' + req.param('q');
+		query = req.param('q');
 	}
 	var Elastic = require('./elastic');
 	var elastic = new Elastic('localhost', 9200);
 	var searchResults = elastic.search('templates', 'event', query, function(err, response, body){
 			var eventTemplates = JSON.parse(body);
+			console.log(JSON.stringify(eventTemplates));
 			res.render('templates', { title: 'Template Events', templates: eventTemplates.hits}); 
 	});
 };

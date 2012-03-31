@@ -7,7 +7,6 @@ var ElasticClient =  function(host, port) {
 
 ElasticClient.prototype.search = function(index, objectType, queryParam, callbackFunction) {
 	var url = this.baseUrl + index + '/' + objectType + '/' + '_search?q=' + queryParam;
-	console.log(url);
 	this.request({uri: url}, callbackFunction);
 };
 

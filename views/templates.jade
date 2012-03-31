@@ -8,7 +8,7 @@ form.form-wrapper.cf(action='/templates', method="GET")
 
 
 div(align="center")
-	if (typeof(templates) == null || templates.total == '0')
+	if (templates.total == '0')
 		span No Results Found
 	else
 		table(class="templates")
