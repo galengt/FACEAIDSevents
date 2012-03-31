@@ -1,0 +1,21 @@
+div(align="center")
+	img(src = "images/faceaids_logo.gif")
+
+h1(align="center") User Accounts
+br
+
+div(align="center")
+	table(class="templates")
+		thead
+			tr
+				th User Name
+				th First Name
+				th Last Name
+				th School
+		tbody
+			each item in users
+					tr
+						td=item.username
+						td=item.firstname
+						td=item.lastname
+						td=item.school

@@ -21,7 +21,7 @@ exports.login = function(req, res) {
 			var firstResult = results[0];
 			if (firstResult['password'] == req.param('pswd')) {
 				req.session.authenticatedUser = req.param('user');
-				exports.templates(req, res);
+				res.redirect('/templates');
 			}
 		} else {
 			req.session.authenticatedUser = req.username;
@@ -31,38 +31,33 @@ exports.login = function(req, res) {
 	});	
 };
 
-exports.chapters = function(req, res){
-	loggedIn = require('./loggedin')
-	if (!loggedIn(req)) {
-		exports.login(req, res);
-	}
-	require('./query.js').makeQuery("Select username from faceaids.user",  function selectCb(err, results, fields) {
-		if (err) {
-		      throw err;
-		}
-		res.render('chapters', { title: 'Chapters', chapters: results}); 
-	  });	
-};
-
-exports.templates = function(req, res) {
-	loggedIn = require('./loggedin')
-	if (!loggedIn(req)) {
-		exports.login(req, res);
-	}
-	var Elastic = require('./elastic');
-	var elastic = new Elastic('localhost', 9200);
-	var searchResults = elastic.searchAll('templates', 'event', function(data) {
-		var eventTemplates = JSON.parse(data);
-		res.render('templates', { title: 'Template Events', templates: eventTemplates.hits}); 
-	});		
-};
-
 exports.users = function(req, res){
+	loggedIn = require('./loggedin')
+	if (!loggedIn(req)) {
+		res.redirect('/');
+	}
 	require('./query.js').makeQuery("Select username, firstname, lastname, school from faceaids.user",  function selectCb(err, results, fields) {
 		if (err) {
 		      throw err;
 		}
 		res.render('users', { users : results, title : 'All Current Users' } );
+	});};
+
+
+exports.templates = function(req, res) {
+	loggedIn = require('./loggedin')
+	if (!loggedIn(req)) {
+		res.redirect('/');
+	}
+	var query = 'type:*';
+	if (req.param('q') != undefined) {
+		query = 'type:' + req.param('q');
+	}
+	var Elastic = require('./elastic');
+	var elastic = new Elastic('localhost', 9200);
+	var searchResults = elastic.search('templates', 'event', query, function(err, response, body){
+			var eventTemplates = JSON.parse(body);
+			res.render('templates', { title: 'Template Events', templates: eventTemplates.hits}); 
 	});
 };
 

@@ -2,22 +2,29 @@ div(align="center")
 	img(src = "images/faceaids_logo.gif")
 
 
+form.form-wrapper.cf(action='/templates', method="GET")
+	input(type='text', placeholder='Search here...', required='required', name='q')
+	button(type='submit') Search
+
+
 div(align="center")
-	table(class="templates")
-		thead
-			tr
-				th Type
-				th Number of Planners
-				th Days to Plan
-				th Budget
-				th Difficulty
-			
-		tbody
-			each items in templates
-				each item in items
-					tr
-						td=item._source.type
-						td=item._source.number_of_planners
-						td=item._source.days_to_plan
-						td=item._source.budget
-						td=item._source.difficulty
+	if (typeof(templates) == null || templates.total == '0')
+		span No Results Found
+	else
+		table(class="templates")
+			thead
+				tr
+					th Type
+					th Number of Planners
+					th Days to Plan
+					th Budget
+					th Difficulty
+			tbody
+				each items in templates
+					each item in items
+						tr
+							td=item._source.type
+							td=item._source.number_of_planners
+							td=item._source.days_to_plan
+							td=item._source.budget
+							td=item._source.difficulty
