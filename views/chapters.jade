@@ -1,0 +1,25 @@
+div(align="center")
+	img(src = "images/faceaids_logo.gif")
+
+h1(align="center") title
+br
+
+div(align="center")
+	table(class="templates")
+		thead
+			tr
+				th Chapter
+				th School
+				th Leader id
+				th Description
+				th City
+				th State
+		tbody
+			each item in chapters
+					tr
+						td=item.chapter_name
+						td=item.school
+						th=item.leader_id
+						td=item.description
+						td=item.city
+						td=item.state

@@ -31,17 +31,37 @@ exports.login = function(req, res) {
 	});	
 };
 
-exports.users = function(req, res){
+exports.allUsers = function(req, res){
 	loggedIn = require('./loggedin')
 	if (!loggedIn(req)) {
 		res.redirect('/');
 	}
-	require('./query.js').makeQuery("Select username, firstname, lastname, school from faceaids.user",  function selectCb(err, results, fields) {
+	require('./query.js').makeQuery("Select * from faceaids.user where active = 1",  function selectCb(err, results, fields) {
 		if (err) {
 		      throw err;
 		}
-		res.render('users', { users : results, title : 'All Current Users' } );
-	});};
+		res.render('users', { 
+			users : results, 
+			title : 'All Current Users' } );
+	});
+};
+
+exports.user = function(req, res){
+	loggedIn = require('./loggedin')
+	if (!loggedIn(req)) {
+		res.redirect('/');
+	}
+	require('./query.js').makeQuery("Select * from faceaids.user where id = "+req.params.id,  function selectCb(err, results, fields) {
+		if (err) {
+		      throw err;
+		}
+		console.log(results);
+		res.render('showuser', {
+			user : results, 
+			title : 'User' } );
+	});
+};
+
 
 
 exports.templates = function(req, res) {
@@ -77,3 +97,16 @@ exports.events = function(req, res) {
 			res.render('events', { title: 'Template Events', events: eventInstances.hits}); 
 	});
 }
+
+exports.chapters = function(req, res){
+	loggedIn = require('./loggedin')
+	if (!loggedIn(req)) {
+		res.redirect('/');
+	}
+	require('./query.js').makeQuery("Select * from faceaids.chapter where active = 1",  function selectCb(err, results, fields) {
+		if (err) {
+		      throw err;
+		}
+		res.render('chapters', { chapters : results, title : 'All Current Chapters' } );
+	});
+};

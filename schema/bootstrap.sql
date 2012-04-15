@@ -6,6 +6,13 @@ VALUES('dev team', 'school of rock', 'rahul and galen\'s chapter for development
 INSERT IGNORE INTO `chapter` (`chapter_name`, `school`, `description`, `additional_info`, `active`, `city`, `state`)
 VALUES('faceaids leadership', 'international HQ', 'staff of the FACEAIDS national office', 'None', 1, 'San Francisco', 'CA');
 
+INSERT IGNORE INTO `chapter` (`chapter_name`, `school`, `description`, `additional_info`, `active`, `city`, `state`)
+VALUES('University of Wyoming', 'University of Wyoming', 'Riding Rodeo style!', 'None', 1, 'Cheyenne', 'WY');
+
+INSERT IGNORE INTO `chapter` (`chapter_name`, `school`, `description`, `additional_info`, `active`, `city`, `state`)
+VALUES('University of Texas', 'Universtity of Texas, Austin', 'Best student group on campus 6 years running!', 'None', 1, 'Austin', 'TX');
+
+
 
 -- populating users
 INSERT IGNORE INTO `user` (`username`, `firstname`, `lastname`, `chapter_id`, `last_login`, `password`, `school`, `year`, `active`)
