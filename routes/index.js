@@ -31,9 +31,7 @@ exports.login = function(req, res) {
 	});	
 };
 
-exports.allUsers = allUsers;
-
-function allUsers(req, res){
+exports.allUsers = function(req, res){
 	loggedIn = require('./loggedin')
 	if (!loggedIn(req)) {
 		res.redirect('/');
@@ -100,7 +98,7 @@ exports.events = function(req, res) {
 	});
 }
 
-exports.chapters = function(req, res){
+exports.allChapters = function(req, res){
 	loggedIn = require('./loggedin')
 	if (!loggedIn(req)) {
 		res.redirect('/');
@@ -112,3 +110,19 @@ exports.chapters = function(req, res){
 		res.render('chapters', { chapters : results, title : 'All Current Chapters' } );
 	});
 };
+
+exports.chapter = function(req, res){
+	loggedIn = require('./loggedin')
+	if (!loggedIn(req)) {
+		res.redirect('/');
+	}
+	require('./query.js').makeQuery("SELECT * FROM faceaids.chapter where id = "+req.params.id, function selectCb(err, results, fields) {
+		if (err) {
+		      throw err;
+		}
+		console.log(results);
+		res.render('showchapter', {
+		chapter : results,
+		title : 'Chapter' } );
+	});
+}

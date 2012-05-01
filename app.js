@@ -37,7 +37,8 @@ app.get('/users', routes.allUsers);
 app.get('/users/:id', routes.user);
 app.get('/templates', routes.templates);
 app.get('/events', routes.events);
-app.get('/chapters', routes.chapters);
+app.get('/chapters', routes.allChapters);
+app.get('/chapters/:id', routes.chapter);
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
