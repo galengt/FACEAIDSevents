@@ -31,7 +31,9 @@ exports.login = function(req, res) {
 	});	
 };
 
-exports.allUsers = function(req, res){
+exports.allUsers = allUsers;
+
+function allUsers(req, res){
 	loggedIn = require('./loggedin')
 	if (!loggedIn(req)) {
 		res.redirect('/');
