@@ -1,7 +1,7 @@
 div(align="center")
 	img(src = "../images/faceaids_logo.gif")
 
-	h1(align="center") title
+	h1(align="center") User Detail
 	br
 
 	div(align="center")
@@ -13,6 +13,7 @@ div(align="center")
 					th First Name
 					th Last Name
 					th School
+					th Chapter Page
 			tbody
 				each item in user
 						tr
@@ -21,3 +22,9 @@ div(align="center")
 							td=item.firstname
 							td=item.lastname
 							td=item.school
+							td
+								a(href="/chapters/" + item.chapter_id)=item.chapter_id
+			
+
+			div(align="center") 
+				a(href="/users") Go Back

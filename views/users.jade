@@ -1,7 +1,7 @@
 div(align="center")
 	img(src = "images/faceaids_logo.gif")
 
-h1(align="center") title
+h1(align="center") All Users
 br
 
 div(align="center")
@@ -13,11 +13,15 @@ div(align="center")
 				th First Name
 				th Last Name
 				th School
+				th Chapter Page
 		tbody
 			each item in users
 					tr
 						td=item.id
-						td=item.username
+						td
+							a(href='/users/' + item.id)=item.username 
 						td=item.firstname
 						td=item.lastname
 						td=item.school
+						td
+							a(href='/chapters/' + item.chapter_id)=item.chapter_id
